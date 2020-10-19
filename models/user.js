@@ -1,4 +1,5 @@
 "use strict";
+const dateHandler = require("../utils/dateHandler");
 
 const User = (sequelize, DataTypes) => {
 	const User = sequelize.define("User", {
@@ -14,6 +15,10 @@ const User = (sequelize, DataTypes) => {
 		password: {
 			type: DataTypes.STRING,
 			allowNull: false,
+		},
+		createdAt: {
+			type: DataTypes.NOW,
+			defaultValue: dateHandler.dateAndTime(),
 		},
 	});
 	return User;

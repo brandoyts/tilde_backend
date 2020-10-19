@@ -1,6 +1,6 @@
 "use strict";
-const moment = require("moment");
-
+const dateHandler = require("../utils/dateHandler");
+console.log(dateHandler.dateAndTime());
 const Guest = (sequelize, DataTypes) => {
 	const Guest = sequelize.define("Guest", {
 		firstname: {
@@ -20,7 +20,15 @@ const Guest = (sequelize, DataTypes) => {
 		lon: DataTypes.FLOAT,
 		createdAt: {
 			type: DataTypes.NOW,
-			defaultValue: moment().format("YYYY-M-D hh:mm:ss"),
+			defaultValue: dateHandler.dateAndTime(),
+			get() {
+				const original = this.getDataValue("createdAt");
+				const formatted = dateHandler
+					.moment(original)
+					.format("YYYY-M-D HH:mm:ss");
+
+				return formatted;
+			},
 		},
 	});
 	return Guest;

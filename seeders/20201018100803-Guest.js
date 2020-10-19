@@ -1,4 +1,5 @@
 "use strict";
+const dateTimeHandler = require("../utils/dateTimeHandler");
 
 module.exports = {
 	up: async (queryInterface, Sequelize) => {
@@ -12,8 +13,7 @@ module.exports = {
 					address: "test address",
 					lat: 3232.542,
 					lon: 3233.32102,
-					createdAt: new Date(),
-					updatedAt: new Date(),
+					createdAt: dateTimeHandler.currentDateAndTime(),
 				},
 			],
 			{},
@@ -21,11 +21,6 @@ module.exports = {
 	},
 
 	down: async (queryInterface, Sequelize) => {
-		/**
-		 * Add commands to revert seed here.
-		 *
-		 * Example:
-		 * await queryInterface.bulkDelete('People', null, {});
-		 */
+		return queryInterface.bulkDelete("Guests", null, {});
 	},
 };

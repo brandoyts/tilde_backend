@@ -1,4 +1,5 @@
 "use strict";
+const dateHandler = require("../utils/dateHandler");
 
 module.exports = {
 	up: async (queryInterface, Sequelize) => {
@@ -9,8 +10,8 @@ module.exports = {
 					username: "brando",
 					email: "brando@mail.com",
 					password: "secret",
-					createdAt: new Date(),
-					updatedAt: new Date(),
+					createdAt: dateHandler.dateAndTime(),
+					updatedAt: null,
 				},
 			],
 			{},
