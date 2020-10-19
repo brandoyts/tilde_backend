@@ -18,7 +18,7 @@ const auth = async (req, res, next) => {
 	if (!verifiedToken)
 		return res.status(401).json({ message: "access denied" });
 
-	req.userId = verifiedToken.id;
+	req.userId = verifiedToken.userId;
 	next();
 };
 

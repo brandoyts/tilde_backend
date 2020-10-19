@@ -5,6 +5,9 @@ const cors = require("cors");
 const nodeGeoCoder = require("node-geocoder");
 const app = express();
 const auth = require("./middlewares/auth");
+const dashboardRoutes = require("./routes/api/dashboard");
+const authenticateRoutes = require("./routes/api/authenticate");
+
 const { signToken } = require("./utils/tokenHandler");
 const fakeUser = {
 	id: "1",
@@ -12,21 +15,21 @@ const fakeUser = {
 	password: "1234",
 };
 
-const geoCoderOptions = {
-	provider: "here",
-	apiKey: process.env.MAP_API_KEY,
-};
+// const geoCoderOptions = {
+// 	provider: "here",
+// 	apiKey: process.env.MAP_API_KEY,
+// };
 
-const geoCoder = nodeGeoCoder(geoCoderOptions);
+// const geoCoder = nodeGeoCoder(geoCoderOptions);
 
-geoCoder
-	.geocode("Sauyo")
-	.then((res) => {
-		console.log(res);
-	})
-	.catch((err) => {
-		console.log(err);
-	});
+// geoCoder
+// 	.geocode("Sauyo")
+// 	.then((res) => {
+// 		console.log(res);
+// 	})
+// 	.catch((err) => {
+// 		console.log(err);
+// 	});
 
 const corsOptions = {
 	exposedHeaders: "Authorization",
@@ -73,3 +76,6 @@ app.post("/authenticate-user", async (req, res) => {
 app.post("/add-guest", auth, (req, res) => {
 	res.send("/add-guest protected");
 });
+
+app.use("/api/v1/dashboard", dashboardRoutes);
+app.use("/api/v1/authenticate", authenticateRoutes);
