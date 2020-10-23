@@ -1,6 +1,7 @@
 "use strict";
+
 const dateHandler = require("../utils/dateHandler");
-console.log(dateHandler.dateAndTime());
+
 const Guest = (sequelize, DataTypes) => {
 	const Guest = sequelize.define("Guest", {
 		firstname: {

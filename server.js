@@ -4,7 +4,6 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const nodeGeoCoder = require("node-geocoder");
 const app = express();
-const auth = require("./middlewares/auth");
 const dashboardRoutes = require("./routes/api/dashboard");
 const authenticateRoutes = require("./routes/api/authenticate");
 
@@ -30,6 +29,7 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.json());
 
