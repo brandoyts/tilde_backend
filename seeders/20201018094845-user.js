@@ -10,8 +10,6 @@ module.exports = {
 					username: "brando",
 					email: "brando@mail.com",
 					password: "secret",
-					createdAt: dateHandler.dateAndTime(),
-					updatedAt: null,
 				},
 			],
 			{},

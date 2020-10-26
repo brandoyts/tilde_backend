@@ -19,19 +19,22 @@ const Guest = (sequelize, DataTypes) => {
 		lat: DataTypes.FLOAT,
 
 		lon: DataTypes.FLOAT,
+
 		createdAt: {
-			type: DataTypes.NOW,
-			defaultValue: dateHandler.dateAndTime(),
+			allowNull: false,
+			type: DataTypes.DATE,
+			defaultValue: DataTypes.NOW,
 			get() {
 				const original = this.getDataValue("createdAt");
 				const formatted = dateHandler
 					.moment(original)
 					.format("YYYY-M-D HH:mm:ss");
-
 				return formatted;
 			},
 		},
 	});
+
+	console.log(dateHandler.dateAndTime());
 	return Guest;
 };
 

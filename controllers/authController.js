@@ -25,13 +25,22 @@ const login = async (req, res) => {
 			userId: user.id,
 		});
 
-		res.header("Authorization", `Bearer ${token}`);
+		// cookie options
+		const options = {
+			maxAge: 1000 * 60 * 15, // would expire after 15 minutes
+			httpOnly: true, // The cookie only accessible by the web server
+		};
+
+		res.cookie("User", user.username, options);
+		res.cookie("Authorization", `Bearer ${token}`, options);
 		res.status(200).json({
-			user: { id: user.id, username: user.username },
+			status: 200,
+			message: "Authorization success",
 		});
 	} catch (err) {
 		res.status(400).json({
-			message: "unauthorized",
+			status: 404,
+			message: "bad request",
 		});
 	}
 };

@@ -30,6 +30,8 @@ const getOverviewData = async (req, res) => {
 	const dayStart = dateHandler.moment().format("YYYY-M-D 07:00:00");
 	const dayEnd = dateHandler.moment().format("YYYY-M-D 23:59:59");
 
+	console.log(dayStart, dayEnd);
+
 	try {
 		const graphicalData = await db.sequelize.query(
 			`SELECT

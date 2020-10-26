@@ -16,10 +16,10 @@ const User = (sequelize, DataTypes) => {
 			type: DataTypes.STRING,
 			allowNull: false,
 		},
-		createdAt: {
-			type: DataTypes.NOW,
-			defaultValue: dateHandler.dateAndTime(),
-		},
+		// createdAt: {
+		// 	type: DataTypes.DATE(),
+		// 	defaultValue: sequelize.literal("CURRENT_TIMESTAMP()"),
+		// },
 	});
 	return User;
 };
