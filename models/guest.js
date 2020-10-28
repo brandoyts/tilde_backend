@@ -1,41 +1,45 @@
-"use strict";
-
 const dateHandler = require("../utils/dateHandler");
 
 const Guest = (sequelize, DataTypes) => {
-	const Guest = sequelize.define("Guest", {
-		firstname: {
-			type: DataTypes.STRING,
-			allowNull: false,
-		},
-		lastname: {
-			type: DataTypes.STRING,
-			allowNull: false,
-		},
-		address: {
-			type: DataTypes.STRING,
-			allowNull: false,
-		},
-		lat: DataTypes.FLOAT,
+  DataTypes.DATE.prototype._stringify = function (date, options) {
+    date = this._applyTimezone(date, options);
+    return date.format("YYYY-MM-DD HH:mm:ss.SSS");
+  }.bind(DataTypes.DATE.prototype);
 
-		lon: DataTypes.FLOAT,
+  const Guest = sequelize.define("Guest", {
+    firstname: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    lastname: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    address: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    lat: DataTypes.FLOAT,
+    lon: DataTypes.FLOAT,
+    createdAt: {
+      type: DataTypes.DATE,
+      defaultValue: sequelize.NOW,
 
-		createdAt: {
-			allowNull: false,
-			type: DataTypes.DATE,
-			defaultValue: DataTypes.NOW,
-			get() {
-				const original = this.getDataValue("createdAt");
-				const formatted = dateHandler
-					.moment(original)
-					.format("YYYY-M-D HH:mm:ss");
-				return formatted;
-			},
-		},
-	});
+      get() {
+        const original = this.getDataValue("createdAt");
+        const formatted = dateHandler
+          .moment(original)
+          .format("YYYY-M-D HH:mm:ss");
+        return formatted;
+      },
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      defaultValue: sequelize.NOW,
+    },
+  });
 
-	console.log(dateHandler.dateAndTime());
-	return Guest;
+  return Guest;
 };
 
 module.exports = Guest;

@@ -1,11 +1,11 @@
 const moment = require("moment");
 
 const dateAndTime = () => {
-	return moment().format("YYYY-M-D HH:mm:ss");
+  return moment().format("YYYY-M-D HH:mm:ss");
 };
 
 const dateOnly = () => {
-	return moment().format("YYYY-M-D");
+  return moment().format("YYYY-M-D");
 };
 
 const dateHandler = {};
