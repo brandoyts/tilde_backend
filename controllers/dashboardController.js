@@ -12,7 +12,7 @@ const geoCoder = nodeGeoCoder(geoCoderOptions);
 
 const addGuest = async (req, res) => {
   const newGuest = {
-    UserId: req.userId,
+    UserId: req.userId, // client id
     firstname: req.body.firstname,
     lastname: req.body.lastname,
     address: req.body.address,
