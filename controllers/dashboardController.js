@@ -82,7 +82,28 @@ const getOverviewData = async (req, res) => {
   }
 };
 
+const traceGuest = async (req, res) => {
+  try {
+    const guests = await db.guest.findAll({
+      where: {
+        UserId: req.userId,
+      },
+    });
+
+    res.status(200).json({
+      message: "success",
+      length: guests.length,
+      guests,
+    });
+  } catch (error) {
+    res.status(400).json({
+      message: "error",
+    });
+  }
+};
+
 module.exports = {
   addGuest,
   getOverviewData,
+  traceGuest,
 };

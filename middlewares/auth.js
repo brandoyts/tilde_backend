@@ -7,7 +7,6 @@ const auth = async (req, res, next) => {
   if (!authHeader) return res.status(401).json({ message: "access denied" });
 
   const token = authHeader.split(" ");
-  console.log(token);
 
   // CHECK BEARER
   if (token[0] !== "Bearer")
